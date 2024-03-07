@@ -7,5 +7,9 @@
         public double? Rating { get; set; }
         public decimal Price { get; set; } = default!;
         public decimal? DiscountedPrice { get; set; }
+
+        public List<ProductImage> ProductImages { get; set; } = null!;
+        public int CategoryId { get; set; }
+        public Category? Category { get; set; }
     }
 }
