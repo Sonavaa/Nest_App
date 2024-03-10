@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EgsdFonJU9NHDfqxwBXX5jiT1GePiCWtlqSW9JdYMX4=",
+  "Hash": "EfOJjQ+P3VR04FFIpotq4ddnrt2O7ge8kuqNbdeBFCw=",
   "Source": "NestApp",
   "BasePath": "_content/NestApp",
   "Mode": "Default",
@@ -1706,6 +1706,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Client\\imgs\\products\\Milk-1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\imgs\\products\\Milk-2.jpg",
+      "SourceId": "NestApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\",
+      "BasePath": "_content/NestApp",
+      "RelativePath": "Client/imgs/products/Milk-2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Client\\imgs\\products\\Milk-2.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\imgs\\shop\\cat-1.png",

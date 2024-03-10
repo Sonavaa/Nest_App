@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NestApp.Data;
+using NestApp.ViewModels;
 
 namespace NestApp.Controllers
 {
@@ -15,8 +16,20 @@ namespace NestApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.OrderByDescending(x => x.Id).Take(20).ToListAsync();
-            return View(products);
+            var products = await _context.Products
+                .Include(x=>x.Category)
+                .Include(x => x.ProductImages)
+                .OrderByDescending(x => x.Id).Take(20).ToListAsync();
+
+            var categories = await _context.Categories
+                .Include(x => x.Products).ToListAsync();
+            ProductVM productVM = new ProductVM()
+            {
+                Products = products,
+                Categories = categories
+            };
+
+            return View(productVM);
         }
     }
 }

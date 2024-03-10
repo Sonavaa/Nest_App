@@ -353,6 +353,10 @@
       "PackagePath": "staticwebassets\\Client\\imgs\\products\\Milk-1.jpg"
     },
     {
+      "Id": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\imgs\\products\\Milk-2.jpg",
+      "PackagePath": "staticwebassets\\Client\\imgs\\products\\Milk-2.jpg"
+    },
+    {
       "Id": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\imgs\\shop\\cat-1.png",
       "PackagePath": "staticwebassets\\Client\\imgs\\shop\\cat-1.png"
     },

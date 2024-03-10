@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model ProductVM
 <main class="main">
     <div class="page-header mt-30 mb-50">
         <div class="container">
@@ -83,15 +83,15 @@
                     </div>
                 </div>
                 <div class="row product-grid">
-                    @foreach (var product in Model)
+                    @foreach (var product in Model.Products)
                     {
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="shop-product-right.html">
-                                            <img class="default-img" src="~/Client/imgs/shop/product-1-1.jpg" alt="" />
-                                            <img class="hover-img" src="~/Client/imgs/shop/product-1-2.jpg" alt="" />
+                                            <img class="default-img" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsMain).Url)" alt="" />
+                                            <img class="hover-img" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsHover).Url)" />
                                         </a>
                                     </div>
                                     <div class="product-action-1">
@@ -105,12 +105,12 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">@product.Category</a>
+                                        <a href="shop-grid-right.html">@product.Category.Name</a>
                                     </div>
                                     <h2><a href="shop-product-right.html">@product.Name</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: ((@Math.Round((decimal)product.Rating,2)*100))/5)%"></div>
+                                            <div class="product-rating" style="width: @((product.Rating*100)/5)%"></div>
                                         </div>
                                         <span class="font-small ml-5 text-muted"> @product.Rating</span>
                                     </div>
@@ -119,8 +119,15 @@
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
-                                            <span>@product.DiscountedPrice</span>
-                                            <span class="old-price">@product.Price</span>
+                                            @if (product.DiscountedPrice > 0)
+                                            {
+                                                <span>@product.DiscountedPrice</span>
+                                                <span class="old-price">@product.Price</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="product-price">@product.Price</span>
+                                            }
                                         </div>
                                         <div class="add-cart">
                                             <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
@@ -315,22 +322,13 @@
                 <div class="sidebar-widget widget-category-2 mb-30">
                     <h5 class="section-title style-1 mb-30">Category</h5>
                     <ul>
+                    </ul>@foreach (var category in Model.Categories)
+                    {
                         <li>
-                            <a href="shop-grid-right.html"> <img src="~/Client/imgs/theme/icons/category-1.svg" alt="" />Milks & Dairies</a><span class="count">30</span>
+                            <a href="shop-grid-right.html"> <img style="width:25px; height=25px;" src="~/@category.Icon" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
                         </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="~/Client/imgs/theme/icons/category-2.svg" alt="" />Clothing</a><span class="count">35</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="~/Client/imgs/theme/icons/category-3.svg" alt="" />Pet Foods </a><span class="count">42</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="~/Client/imgs/theme/icons/category-4.svg" alt="" />Baking material</a><span class="count">68</span>
-                        </li>
-                        <li>
-                            <a href="shop-grid-right.html"> <img src="~/Client/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a><span class="count">87</span>
-                        </li>
-                    </ul>
+
+                    }
                 </div>
                 <!-- Fillter By Price -->
                 <div class="sidebar-widget price_range range mb-30">

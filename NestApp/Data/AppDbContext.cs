@@ -9,5 +9,9 @@ namespace NestApp.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<ProductsVendor> ProductsVendors { get; set; }
+
+ 
     }
 }
