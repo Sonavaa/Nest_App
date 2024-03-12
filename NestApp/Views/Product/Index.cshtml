@@ -87,14 +87,14 @@
                     {
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
-                                <div class="product-img-action-wrap">
+                                <div class="product-img-action-wrap ">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
-                                            <img class="default-img" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsMain).Url)" alt="" />
-                                            <img class="hover-img" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsHover).Url)" />
+                                        <a href="shop-product-right.html" style="width:100%; height=100%;">
+                                            <img class="default-img" style="width:100%; height=100%;" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsMain).Url)" alt="" />
+                                            <img class="hover-img" style="width:100%; height=100%;" src="~/@(product.ProductImages.FirstOrDefault(x=>x.IsHover).Url)" />
                                         </a>
                                     </div>
-                                    <div class="product-action-1">
+                                    <div class="product-action-1" style="display:flex;transform:translate(-50%,50%)">
                                         <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
@@ -324,8 +324,8 @@
                     <ul>
                     </ul>@foreach (var category in Model.Categories)
                     {
-                        <li>
-                            <a href="shop-grid-right.html"> <img style="width:25px; height=25px;" src="~/@category.Icon" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
+                        <li style="display:flex;justify-content:space-between;align-items:baseline;margin-right:30px;">
+                            <a href="shop-grid-right.html" > <img style="width:25px; height=25px;margin-right:10px;" src="~/@category.Icon" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
                         </li>
 
                     }
