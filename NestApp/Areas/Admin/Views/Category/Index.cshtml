@@ -21,10 +21,11 @@
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Icon: activate to sort column descending" style="width: 186.2px;">Name</th>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Icon: activate to sort column descending" style="width: 186.2px;">Icon</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 282.2px;">Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.2px;">Product</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 134.2px;">Product Description</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="2" aria-label="Office: activate to sort column ascending" style="width: 134.2px;">Actions<th>
                                 </thead>
                                 <tbody>
                                     @foreach (var category in Model)
@@ -36,6 +37,8 @@
                                                 <td style="text-align:center;vertical-align:baseline">@category.Name</td>
                                                 <td style="text-align:center;vertical-align:baseline">@product.Name</td>
                                                 <td style="text-align:center;vertical-align:baseline">@product.Description.Split(".")[0]</td>
+                                                <td><a class="btn btn-danger" asp-controller="category" asp-action="delete" asp-route-id="@category.Id">Delete</a></td>
+                                                <td><a class="btn btn-warning" asp-controller="category" asp-action="edit" asp-route-id="@category.Id">Edit</a></td>
                                             </tr>
                                         }
                                     }

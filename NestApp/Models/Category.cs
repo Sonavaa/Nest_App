@@ -10,5 +10,6 @@ namespace NestApp.Models
         [NotMapped]
         public IFormFile File { get; set; }
         public List<Product> Products { get; set; }
+        public bool IsDeleted { get; set; } = default!;
     }
 }

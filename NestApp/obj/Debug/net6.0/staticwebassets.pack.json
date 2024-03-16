@@ -7429,6 +7429,10 @@
       "PackagePath": "staticwebassets\\Client\\categoryIcons\\005e1bc3-1d57-4425-a77f-6b77323a98d8_applejpeg.jpeg"
     },
     {
+      "Id": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\categoryIcons\\category-1.svg",
+      "PackagePath": "staticwebassets\\Client\\categoryIcons\\category-1.svg"
+    },
+    {
       "Id": "C:\\Users\\HP\\Desktop\\NestApp\\NestApp\\wwwroot\\Client\\css\\main.css",
       "PackagePath": "staticwebassets\\Client\\css\\main.css"
     },
