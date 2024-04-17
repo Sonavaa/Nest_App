@@ -19,66 +19,87 @@ namespace NestApp.Areas.Admin.Controllers
             _context = context;
             _env= env;
         }
+
         public async Task<IActionResult> Index()
         {
-            var result = await _context.Categories.Where(x => x.IsDeleted == false).Include(x=>x.Products).ToListAsync();
-            return View(result);
+            var categories = await _context.Categories.Where(x => !x.IsDeleted).ToListAsync();
+            return View(categories);
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
-            if(!ModelState.IsValid)
-            {
-                //ModelState.AddModelError("", "The blank must be filled!");
-                    return View(category);
-            }
+            if (ModelState["Name"] == null ||
+                ModelState["File"] == null) return View(category);
 
             if (!category.File.CheckFileType("image"))
             {
                 ModelState.AddModelError("", "Invalid File");
                 return View(category);
             }
-
-            //var mb = category.File.Length * 1024 * 2;
-            if(!category.File.CheckFileSize(2))
+            if (!category.File.CheckFileSize(10))
             {
-                ModelState.AddModelError("", "File's length must be less than 2 mb!");
+                ModelState.AddModelError("", "Invalid File Size");
                 return View(category);
             }
 
-            string uniqueFileName = await category.File.SaveFilesAsync(_env.WebRootPath, "client", "categoryIcons");
+            string uniqueFileName = await category.File.SaveFilesAsync(_env.WebRootPath, "Client", "imgs", "categoryIcons");
 
-            Category newcategory = new Category() { 
-            Name = category.Name,
-            Icon = uniqueFileName,
+            Category newCategory = new Category
+            {
+                Name = category.Name,
+                Icon = uniqueFileName,
             };
 
-            string path = Path.Combine(_env.WebRootPath, "Client", "categoryIcons", uniqueFileName);
-
-            FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-
-            await category.File.CopyToAsync(fs);
-
-            await _context.Categories.AddAsync(newcategory);
+            await _context.Categories.AddAsync(newCategory);
             await _context.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Index");
         }
 
-        //public async Task<IActionResult> Delete(int id)
+        //[HttpPost]
+
+        //public async Task<IActionResult> Create(Category category)
         //{
-        //    Category? category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
-        //    if (category == null)
+        //    if(!ModelState.IsValid)
         //    {
-        //        return NotFound();
+        //        //ModelState.AddModelError("", "The blank must be filled!");
+        //            return View(category);
         //    }
-        //    //_context.Categories.Remove(category); Hard Delete
-        //    category.IsDeleted = true;
+
+        //    if (!category.File.CheckFileType("image"))
+        //    {
+        //        ModelState.AddModelError("", "Invalid File");
+        //        return View(category);
+        //    }
+
+        //    //var mb = category.File.Length * 1024 * 2;
+        //    if(!category.File.CheckFileSize(2))
+        //    {
+        //        ModelState.AddModelError("", "File's length must be less than 2 mb!");
+        //        return View(category);
+        //    }
+
+        //    string uniqueFileName = await category.File.SaveFilesAsync(_env.WebRootPath, "client", "categoryIcons");
+
+        //    Category newcategory = new Category() { 
+        //    Name = category.Name,
+        //    Icon = uniqueFileName,
+        //    };
+
+        //    string path = Path.Combine(_env.WebRootPath, "Client", "categoryIcons", uniqueFileName);
+
+        //////////////////////////////////    FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+
+        //////////////////////////////////    await category.File.CopyToAsync(fs);
+
+        //    await _context.Categories.AddAsync(newcategory);
         //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
+        //    return RedirectToAction("Index");
         //}
 
         public async Task<IActionResult> Edit(int id)
@@ -108,9 +129,9 @@ namespace NestApp.Areas.Admin.Controllers
             }
             if(category.File != null)
             {
-                if (!category.File.CheckFileSize(2))
+                if (!category.File.CheckFileSize(10))
                 {
-                    ModelState.AddModelError("File", "File's length must be less than 2mb!");
+                    ModelState.AddModelError("File", "File's length must be less than 10mb!");
                     return View(category);
                 }
                 if(!category.File.CheckFileType("image"))
@@ -119,10 +140,10 @@ namespace NestApp.Areas.Admin.Controllers
                     return View(category);
                 }
 
-                category.File.DeleteFile(_env.WebRootPath, "client", "categoryIcons", existCategory.Icon);
+                category.File.DeleteFile(_env.WebRootPath, "Client", "imgs", "categoryIcons", existCategory.Icon);
 
                 var uniqueFileName = await category.File.
-                    SaveFilesAsync(_env.WebRootPath, "client", "categoryIcons");
+                    SaveFilesAsync(_env.WebRootPath, "Client", "imgs", "categoryIcons");
                 existCategory.Icon = uniqueFileName;
                 existCategory.Name = category.Name;
                 _context.Update(existCategory);
@@ -160,4 +181,16 @@ namespace NestApp.Areas.Admin.Controllers
         }
     }
 
+    //public async Task<IActionResult> Delete(int id)
+    //{
+    //    Category? category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
+    //    if (category == null)
+    //    {
+    //        return NotFound();
+    //    }
+    //    //_context.Categories.Remove(category); Hard Delete
+    //    category.IsDeleted = true;
+    //    await _context.SaveChangesAsync();
+    //    return RedirectToAction(nameof(Index));
+    //}
 }

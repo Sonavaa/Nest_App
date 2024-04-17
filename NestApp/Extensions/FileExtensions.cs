@@ -6,7 +6,7 @@ namespace NestApp.FileExtension
 {
     public static class FileExtensions
     {
-        public static async Task<string> SaveFilesAsync(this IFormFile file, string root, string client, string folderName)
+        public static async Task<string> SaveFilesAsync(this IFormFile file, string root, string client, string folderName, string folderName2)
         {
             string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
             string path = Path.Combine(root, client, folderName, uniqueFileName);
@@ -25,14 +25,14 @@ namespace NestApp.FileExtension
         }
         public static bool CheckFileSize(this IFormFile file, int fileSize)
         {
-            if (file.Length < fileSize * 2 * 1024)
+            if (file.Length < fileSize * 1024)
             {
                 return true;
             }
             return false;
         }
 
-        public static void DeleteFile(this IFormFile file, string root, string client, string folderName, string fileName)
+        public static void DeleteFile(this IFormFile file, string root, string client, string folderName, string folderName2, string fileName)
         {
             string path = Path.Combine(root, client, folderName, fileName);
             if (System.IO.File.Exists(path))

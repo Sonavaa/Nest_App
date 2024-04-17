@@ -1,4 +1,6 @@
-﻿namespace NestApp.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NestApp.Models
 {
     public class Product : Base
     {
@@ -11,8 +13,15 @@
         public List<ProductImage> ProductImages { get; set; } = null!;
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
-        public ICollection<ProductsVendor> productsVendors { get; set; }
         public bool IsDeleted { get; set; } = default!;
+        public int VendorId { get; set; }   
+        public Vendor? Vendor { get; set; }
+        [NotMapped]
+        public IFormFile? File { get; set; }
+        [NotMapped]
+        public IFormFile? MainFile { get; set; }
+        [NotMapped]
+        public IFormFile? HoverFile { get; set; }
 
     }
 }

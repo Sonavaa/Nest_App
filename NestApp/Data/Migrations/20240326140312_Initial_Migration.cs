@@ -15,7 +15,8 @@ namespace NestApp.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +29,11 @@ namespace NestApp.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rating = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,7 +51,9 @@ namespace NestApp.Data.Migrations
                     Rating = table.Column<double>(type: "float", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DiscountedPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    VendorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,6 +62,12 @@ namespace NestApp.Data.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_Vendors_VendorId",
+                        column: x => x.VendorId,
+                        principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -81,32 +94,6 @@ namespace NestApp.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProductsVendors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Productid = table.Column<int>(type: "int", nullable: false),
-                    VendorId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductsVendors", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductsVendors_Products_Productid",
-                        column: x => x.Productid,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductsVendors_Vendors_VendorId",
-                        column: x => x.VendorId,
-                        principalTable: "Vendors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImages_ProductId",
                 table: "ProductImages",
@@ -118,13 +105,8 @@ namespace NestApp.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsVendors_Productid",
-                table: "ProductsVendors",
-                column: "Productid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductsVendors_VendorId",
-                table: "ProductsVendors",
+                name: "IX_Products_VendorId",
+                table: "Products",
                 column: "VendorId");
         }
 
@@ -134,16 +116,13 @@ namespace NestApp.Data.Migrations
                 name: "ProductImages");
 
             migrationBuilder.DropTable(
-                name: "ProductsVendors");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Vendors");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Vendors");
         }
     }
 }

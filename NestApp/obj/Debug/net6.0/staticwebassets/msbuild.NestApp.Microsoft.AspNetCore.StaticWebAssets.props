@@ -29680,12 +29680,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Admin\vendor\jquery\jquery.slim.min.map))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\005e1bc3-1d57-4425-a77f-6b77323a98d8_applejpeg.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\395d809e-1607-4660-a22a-c2951bbdaa03_category-1.svg))">
       <SourceType>Package</SourceType>
       <SourceId>NestApp</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/NestApp</BasePath>
-      <RelativePath>Client/categoryIcons/005e1bc3-1d57-4425-a77f-6b77323a98d8_applejpeg.jpeg</RelativePath>
+      <RelativePath>Client/categoryIcons/395d809e-1607-4660-a22a-c2951bbdaa03_category-1.svg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -29694,14 +29694,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\005e1bc3-1d57-4425-a77f-6b77323a98d8_applejpeg.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\395d809e-1607-4660-a22a-c2951bbdaa03_category-1.svg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\category-1.svg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\488cf630-40f5-4a9a-a049-9308140db78b_category-4.svg))">
       <SourceType>Package</SourceType>
       <SourceId>NestApp</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/NestApp</BasePath>
-      <RelativePath>Client/categoryIcons/category-1.svg</RelativePath>
+      <RelativePath>Client/categoryIcons/488cf630-40f5-4a9a-a049-9308140db78b_category-4.svg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -29710,7 +29710,55 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\category-1.svg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\488cf630-40f5-4a9a-a049-9308140db78b_category-4.svg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\704b9e8d-024c-49f2-87fc-34cbf57d4f73_category-2.svg))">
+      <SourceType>Package</SourceType>
+      <SourceId>NestApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/NestApp</BasePath>
+      <RelativePath>Client/categoryIcons/704b9e8d-024c-49f2-87fc-34cbf57d4f73_category-2.svg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\704b9e8d-024c-49f2-87fc-34cbf57d4f73_category-2.svg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\b3225f92-e64f-40a7-a297-ec40cc59b603_category-3.svg))">
+      <SourceType>Package</SourceType>
+      <SourceId>NestApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/NestApp</BasePath>
+      <RelativePath>Client/categoryIcons/b3225f92-e64f-40a7-a297-ec40cc59b603_category-3.svg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\b3225f92-e64f-40a7-a297-ec40cc59b603_category-3.svg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\f7463b0f-a3df-4145-a396-d3f46db227f7_category-5.svg))">
+      <SourceType>Package</SourceType>
+      <SourceId>NestApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/NestApp</BasePath>
+      <RelativePath>Client/categoryIcons/f7463b0f-a3df-4145-a396-d3f46db227f7_category-5.svg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\categoryIcons\f7463b0f-a3df-4145-a396-d3f46db227f7_category-5.svg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Client\css\main.css))">
       <SourceType>Package</SourceType>

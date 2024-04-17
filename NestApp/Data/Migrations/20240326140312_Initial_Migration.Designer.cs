@@ -12,7 +12,7 @@ using NestApp.Data;
 namespace NestApp.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240316073936_Initial_Migration")]
+    [Migration("20240326140312_Initial_Migration")]
     partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,9 @@ namespace NestApp.Data.Migrations
                     b.Property<string>("Icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -63,6 +66,9 @@ namespace NestApp.Data.Migrations
                     b.Property<decimal?>("DiscountedPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -73,9 +79,14 @@ namespace NestApp.Data.Migrations
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
 
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Products");
                 });
@@ -108,29 +119,6 @@ namespace NestApp.Data.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("NestApp.Models.ProductsVendor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Productid")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Productid");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("ProductsVendors");
-                });
-
             modelBuilder.Entity("NestApp.Models.Vendor", b =>
                 {
                     b.Property<int>("Id")
@@ -139,9 +127,21 @@ namespace NestApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -156,7 +156,15 @@ namespace NestApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NestApp.Models.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("NestApp.Models.ProductImage", b =>
@@ -170,25 +178,6 @@ namespace NestApp.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("NestApp.Models.ProductsVendor", b =>
-                {
-                    b.HasOne("NestApp.Models.Product", "Product")
-                        .WithMany("productsVendors")
-                        .HasForeignKey("Productid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NestApp.Models.Vendor", "Vendor")
-                        .WithMany("productsVendors")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Vendor");
-                });
-
             modelBuilder.Entity("NestApp.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -197,13 +186,6 @@ namespace NestApp.Data.Migrations
             modelBuilder.Entity("NestApp.Models.Product", b =>
                 {
                     b.Navigation("ProductImages");
-
-                    b.Navigation("productsVendors");
-                });
-
-            modelBuilder.Entity("NestApp.Models.Vendor", b =>
-                {
-                    b.Navigation("productsVendors");
                 });
 #pragma warning restore 612, 618
         }

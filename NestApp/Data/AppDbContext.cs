@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NestApp.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NestApp.Data
 {
@@ -10,8 +11,5 @@ namespace NestApp.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
-        public DbSet<ProductsVendor> ProductsVendors { get; set; }
-
- 
     }
 }
