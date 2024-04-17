@@ -226,4 +226,20 @@ public class ProductController : Controller
     }
 
 
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+        Product? products = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (products == null)
+        {
+            return NotFound();
+        }
+
+        products.IsDeleted = true;
+        await _context.SaveChangesAsync();
+
+        var categories = await _context.Categories.Include(x => x.Products).Where(x => !x.IsDeleted).ToListAsync();
+
+        return PartialView("_CategoryPartial", categories);
+    }
 }
